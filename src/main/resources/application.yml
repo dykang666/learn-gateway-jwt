@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: learn-gateway-jwt
+  cloud:
+      gateway:
+        routes:
+          - id: baidu
+            uri: https://www.baidu.com
+            predicates:
+              - Path=/baidu/**
+            filters:
+              - StripPrefix=1
+          - id: sina
+            uri: https://www.sina.com.cn/
+            predicates:
+              - Path=/sina/**
+            filters:
+              - StripPrefix=1
+
+org:
+  my:
+    jwt:
+      #???????
+      skip-auth-urls:
+        - /sina
+      ############################################
+      #   ????
+      #     ???d:??h:???m:???s:?
+      ###########################################
+      effective-time: 5m
